@@ -17,7 +17,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
     hood_name = models.CharField(max_length=30)
-    profile_pic = models.ImageField(upload_to='photos/', default='kent.jpg')
+    profile_pic = models.ImageField(upload_to='photos/', default='profile.jpg')
     phone_number = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
@@ -29,7 +29,7 @@ class Profile(models.Model):
             img.save(self.profile_pic.path)
 
     def get_absolute_url(self):
-        return reverse('hood:update_profile', kwargs={'pk': self.pk})
+        return reverse('aphood:update_profile', kwargs={'pk': self.pk})
 
     def create_profile(sender, **kwargs):
         if kwargs['created']:
@@ -52,7 +52,7 @@ class Post(models.Model):
         return self.content
 
     def get_absolute_url(self):
-        return reverse('hood:home')
+        return reverse('aphood:home')
 
 
 class Neighborhood(models.Model):
@@ -79,4 +79,4 @@ class Business(models.Model):
         return self.description
 
     def get_absolute_url(self):
-        return reverse('hood:business')
+        return reverse('aphood:business')

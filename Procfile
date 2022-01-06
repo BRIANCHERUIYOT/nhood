@@ -1,1 +1,1 @@
-web: gunicorn myhood.wsgi --log-file -
+web: gunicorn prhood.wsgi --log-file -
